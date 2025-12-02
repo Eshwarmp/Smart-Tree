@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoNauts Smart Tree Display - IDEATHON 2025</title>
+    <style>
+        /* Base Styling for the Digital Display Look */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0d1117; /* Dark background for high-tech look */
+            color: #ffffff;
+            margin: 0;
+            padding: 10px; /* Reduced padding */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Critical: Set to full viewport height */
+            overflow: hidden; /* Critical: Prevent scrolling */
+        }
+
+        .display-container {
+            width: 95%; /* Increased width */
+            height: 95%; /* Increased height */
+            padding: 20px; /* Reduced padding */
+            border-radius: 15px;
+            background-color: #161b22; 
+            box-shadow: 0 0 30px rgba(0, 255, 128, 0.5); 
+            border: 2px solid #00f07c;
+            display: grid;
+            /* Define the grid structure: 2 columns, 4 rows */
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto 1fr auto;
+            gap: 10px; /* Reduced gap */
+        }
+
+        .header {
+            grid-column: 1 / 3;
+            text-align: center;
+            border-bottom: 1px solid #00f07c;
+            padding-bottom: 10px;
+            margin-bottom: 5px;
+        }
+
+        .header h1 {
+            color: #00f07c;
+            margin: 0;
+            font-size: 1.8em; /* Reduced font size */
+        }
+
+        .header p {
+            color: #a8a8a8;
+            margin-top: 5px;
+            font-size: 0.9em; /* Reduced font size */
+        }
+
+        .data-grid {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px; /* Reduced gap */
+        }
+
+        .metric-box {
+            background-color: #21262d;
+            padding: 10px; /* Reduced padding */
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-box h2 {
+            font-size: 0.9em; /* Reduced font size */
+            color: #00f07c;
+            margin: 0 0 5px 0;
+        }
+
+        .metric-value {
+            font-size: 2em; /* Reduced font size */
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Sensor and Status Panel (Row 3, Column 1) */
+        .status-panel {
+            grid-column: 1 / 2;
+            grid-row: 3 / 4;
+            display: flex;
+            flex-direction: column; /* Changed to vertical for better space use */
+            justify-content: space-around;
+            background-color: #0d1117;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 5px solid #00f07c;
+        }
+        
+        .status-panel h3 {
+             color: #00f07c;
+             margin: 0 0 5px 0;
+             font-size: 1em;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em; 
+            color: #e6e6e6;
+            margin: 3px 0;
+        }
+
+        .status-item span {
+            font-weight: bold;
+            color: #00f07c;
+        }
+
+        /* Image and Controls (Column 2) */
+        .visual-control-section {
+            grid-column: 2 / 3;
+            grid-row: 2 / 5; /* Spans multiple rows */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .visual-panel {
+            flex-grow: 1; /* Takes up most of the vertical space */
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #21262d;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .visual-panel img {
+            max-width: 95%;
+            max-height: 90%;
+            height: auto;
+            border-radius: 5px;
+            border: 1px solid #00f07c;
+            object-fit: contain; /* Ensure the image fits without cropping */
+        }
+        
+        .controls {
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .controls-row {
+             display: flex;
+             justify-content: space-between;
+             gap: 5px;
+        }
+
+        .control-button {
+            padding: 8px 10px; /* Reduced padding */
+            flex-grow: 1;
+            background-color: #00f07c;
+            color: #0d1117;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.85em; /* Reduced font size */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .control-button:hover {
+            background-color: #00d66a;
+        }
+
+        /* Leaderboard (Row 4, Column 1) */
+        .leaderboard {
+            grid-column: 1 / 2;
+            grid-row: 4 / 5;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #21262d;
+            margin-top: 5px;
+        }
+
+        .leaderboard h3 {
+            color: gold;
+            margin-top: 0;
+            border-bottom: 1px dashed #00f07c;
+            padding-bottom: 5px;
+            font-size: 1em;
+        }
+
+        .leaderboard ol {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .leaderboard li {
+            font-size: 0.9em; 
+            color: #e6e6e6;
+            text-align: center;
+        }
+
+        .leaderboard .score {
+            font-weight: bold;
+            color: #00f07c;
+            font-size: 1.3em; 
+            display: block;
+        }
+        .leaderboard .first {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="display-container">
+        <div class="header">
+            <h1>SMART CARBON CAPTURE UNIT: TECH PARK NORTH</h1>
+            <p>EcoNauts Project - IDEATHON 2025 | Powered by Algae Bioreactors</p>
+        </div>
+
+        <div class="data-grid">
+            <div class="metric-box">
+                <h2>CO₂ CAPTURED TODAY</h2>
+                <div id="captureToday" class="metric-value">0.0 kg</div>
+            </div>
+            <div class="metric-box">
+                <h2>TOTAL NETWORK OFFSET</h2>
+                <div id="totalOffset" class="metric-value">5,320 kg</div>
+            </div>
+            <div class="metric-box">
+                <h2>CARBON-SINK EQUIVALENT</h2>
+                <div id="equivalentTrees" class="metric-value">230 Trees</div>
+            </div>
+        </div>
+
+        <div class="status-panel">
+            <h3>REAL-TIME SYSTEM MONITORING</h3>
+            <div class="status-item">
+                Ambient $CO_{2}$ Level: <span id="ambientCO2">440 ppm</span>
+            </div>
+            <div class="status-item">
+                Post-Capture Output: <span id="postCaptureCO2" style="color: #ff5757;">440 ppm</span>
+            </div>
+            <div class="status-item">
+                Bioreactor Status: <span id="systemStatus">🔴 OFFLINE</span>
+            </div>
+            <div class="status-item">
+                Power Source: <span id="powerStatus">🔋 Solar Standby</span>
+            </div>
+        </div>
+
+        <div class="visual-control-section">
+            <div class="visual-panel">
+                <img src="tree.png" alt="Visualization of the Smart Carbon Capture Tree">
+            </div>
+            
+            <div class="controls">
+                <div class="controls-row">
+                    <button class="control-button" onclick="toggleBioreactor(true)">START BIO-CAPTURE</button>
+                    <button class="control-button" onclick="toggleBioreactor(false)">SYSTEM SHUTDOWN</button>
+                </div>
+                <button class="control-button" onclick="simulateCapture()">SIMULATE 1 HOUR OF CAPTURE</button>
+            </div>
+        </div>
+        
+        <div class="leaderboard">
+            <h3>🏅 COMMUNITY LEADERBOARD - TECH PARK NORTH:</h3>
+            <ol>
+                <li class="first">🥇 YOUR SCORE: <span id="northScore" class="score">92</span> Pts</li>
+                <li>🥈 Innovation Circle: <span class="score">88</span> Pts</li>
+                <li>🥉 Green Meadows: <span class="score">81</span> Pts</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // --- JavaScript Logic (Same as before) ---
+        let captureToday = 0.0;
+        let totalOffset = 5320;
+        let ambientCO2 = 440;
+        let postCaptureCO2 = 440;
+        let northScore = 92;
+        let isActive = false;
+        
+        const targetPostCapture = 380;
+
+        function updateDisplay() {
+            document.getElementById('captureToday').textContent = captureToday.toFixed(1) + ' kg';
+            document.getElementById('totalOffset').textContent = totalOffset.toFixed(0) + ' kg';
+            const treesEquivalent = Math.round(totalOffset / 23); 
+            document.getElementById('equivalentTrees').textContent = treesEquivalent + ' Trees';
+            
+            document.getElementById('ambientCO2').textContent = ambientCO2 + ' ppm';
+            
+            const postCaptureElement = document.getElementById('postCaptureCO2');
+            postCaptureCO2 = Math.round(postCaptureCO2); // Ensure it's a clean number
+            postCaptureElement.textContent = postCaptureCO2 + ' ppm';
+            
+            if (postCaptureCO2 < ambientCO2) {
+                postCaptureElement.style.color = '#00f07c'; 
+            } else {
+                postCaptureElement.style.color = '#ff5757'; 
+            }
+            
+            document.getElementById('northScore').textContent = northScore;
+        }
+
+        function simulateCapture() {
+            if (!isActive) {
+                alert("Please click 'START BIO-CAPTURE' first to activate the system.");
+                return;
+            }
+
+            const hourCapture = 0.15; 
+            captureToday += hourCapture;
+            totalOffset += hourCapture;
+            northScore += Math.random() > 0.5 ? 1 : 0; 
+            
+            updateDisplay();
+        }
+
+        function toggleBioreactor(shouldActivate) {
+            const statusElement = document.getElementById('systemStatus');
+            const powerElement = document.getElementById('powerStatus');
+            isActive = shouldActivate;
+
+            if (shouldActivate) {
+                statusElement.innerHTML = '🟢 **ACTIVE**';
+                statusElement.style.color = '#00f07c';
+                postCaptureCO2 = targetPostCapture;
+                powerElement.innerHTML = '⚡ **Active**';
+            } else {
+                statusElement.innerHTML = '🔴 **OFFLINE**';
+                statusElement.color = '#ff5757';
+                postCaptureCO2 = ambientCO2; 
+                powerElement.innerHTML = '🔋 **Standby**';
+            }
+            
+            updateDisplay();
+        }
+
+        window.onload = function() {
+            updateDisplay();
+            toggleBioreactor(false); 
+        };
+    </script>
+
+</body>
+</html>
