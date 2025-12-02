@@ -337,6 +337,19 @@
                 font-size: 1.1em;
             }
         }
+
+        /* Fix overflow visibility on mobile */
+        @media (max-width: 768px) {
+            body {
+                height: auto !important;
+                overflow-y: auto !important;
+                display: block !important;
+            }
+
+            .display-container {
+                height: auto !important;
+            }
+        }
     </style>
 </head>
 
