@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,30 +9,38 @@
         /* Base Styling for the Digital Display Look */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0d1117; /* Dark background for high-tech look */
+            background-color: #0d1117;
+            /* Dark background for high-tech look */
             color: #ffffff;
             margin: 0;
-            padding: 10px; /* Reduced padding */
+            padding: 10px;
+            /* Reduced padding */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Critical: Set to full viewport height */
-            overflow: hidden; /* Critical: Prevent scrolling */
+            height: 100vh;
+            /* Critical: Set to full viewport height */
+            overflow: hidden;
+            /* Critical: Prevent scrolling */
         }
 
         .display-container {
-            width: 95%; /* Increased width */
-            height: 95%; /* Increased height */
-            padding: 20px; /* Reduced padding */
+            width: 95%;
+            /* Increased width */
+            height: 95%;
+            /* Increased height */
+            padding: 20px;
+            /* Reduced padding */
             border-radius: 15px;
-            background-color: #161b22; 
-            box-shadow: 0 0 30px rgba(0, 255, 128, 0.5); 
+            background-color: #161b22;
+            box-shadow: 0 0 30px rgba(0, 255, 128, 0.5);
             border: 2px solid #00f07c;
             display: grid;
             /* Define the grid structure: 2 columns, 4 rows */
             grid-template-columns: 2fr 1fr;
             grid-template-rows: auto auto 1fr auto;
-            gap: 10px; /* Reduced gap */
+            gap: 10px;
+            /* Reduced gap */
         }
 
         .header {
@@ -45,13 +54,15 @@
         .header h1 {
             color: #00f07c;
             margin: 0;
-            font-size: 1.8em; /* Reduced font size */
+            font-size: 1.8em;
+            /* Reduced font size */
         }
 
         .header p {
             color: #a8a8a8;
             margin-top: 5px;
-            font-size: 0.9em; /* Reduced font size */
+            font-size: 0.9em;
+            /* Reduced font size */
         }
 
         .data-grid {
@@ -59,24 +70,28 @@
             grid-row: 2 / 3;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px; /* Reduced gap */
+            gap: 10px;
+            /* Reduced gap */
         }
 
         .metric-box {
             background-color: #21262d;
-            padding: 10px; /* Reduced padding */
+            padding: 10px;
+            /* Reduced padding */
             border-radius: 8px;
             text-align: center;
         }
 
         .metric-box h2 {
-            font-size: 0.9em; /* Reduced font size */
+            font-size: 0.9em;
+            /* Reduced font size */
             color: #00f07c;
             margin: 0 0 5px 0;
         }
 
         .metric-value {
-            font-size: 2em; /* Reduced font size */
+            font-size: 2em;
+            /* Reduced font size */
             font-weight: bold;
             color: #ffffff;
         }
@@ -86,25 +101,26 @@
             grid-column: 1 / 2;
             grid-row: 3 / 4;
             display: flex;
-            flex-direction: column; /* Changed to vertical for better space use */
+            flex-direction: column;
+            /* Changed to vertical for better space use */
             justify-content: space-around;
             background-color: #0d1117;
             padding: 10px;
             border-radius: 8px;
             border-left: 5px solid #00f07c;
         }
-        
+
         .status-panel h3 {
-             color: #00f07c;
-             margin: 0 0 5px 0;
-             font-size: 1em;
+            color: #00f07c;
+            margin: 0 0 5px 0;
+            font-size: 1em;
         }
 
         .status-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9em; 
+            font-size: 0.9em;
             color: #e6e6e6;
             margin: 3px 0;
         }
@@ -117,7 +133,8 @@
         /* Image and Controls (Column 2) */
         .visual-control-section {
             grid-column: 2 / 3;
-            grid-row: 2 / 5; /* Spans multiple rows */
+            grid-row: 2 / 5;
+            /* Spans multiple rows */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -125,7 +142,8 @@
         }
 
         .visual-panel {
-            flex-grow: 1; /* Takes up most of the vertical space */
+            flex-grow: 1;
+            /* Takes up most of the vertical space */
             padding: 10px;
             border-radius: 8px;
             background-color: #21262d;
@@ -142,9 +160,10 @@
             height: auto;
             border-radius: 5px;
             border: 1px solid #00f07c;
-            object-fit: contain; /* Ensure the image fits without cropping */
+            object-fit: contain;
+            /* Ensure the image fits without cropping */
         }
-        
+
         .controls {
             padding: 10px 0;
             display: flex;
@@ -153,19 +172,21 @@
         }
 
         .controls-row {
-             display: flex;
-             justify-content: space-between;
-             gap: 5px;
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
         }
 
         .control-button {
-            padding: 8px 10px; /* Reduced padding */
+            padding: 8px 10px;
+            /* Reduced padding */
             flex-grow: 1;
             background-color: #00f07c;
             color: #0d1117;
             border: none;
             border-radius: 5px;
-            font-size: 0.85em; /* Reduced font size */
+            font-size: 0.85em;
+            /* Reduced font size */
             cursor: pointer;
             transition: background-color 0.3s;
             font-weight: bold;
@@ -201,7 +222,7 @@
         }
 
         .leaderboard li {
-            font-size: 0.9em; 
+            font-size: 0.9em;
             color: #e6e6e6;
             text-align: center;
         }
@@ -209,14 +230,116 @@
         .leaderboard .score {
             font-weight: bold;
             color: #00f07c;
-            font-size: 1.3em; 
+            font-size: 1.3em;
             display: block;
         }
+
         .leaderboard .first {
             color: gold;
         }
+
+        /* 📱 Mobile Responsive Improvements */
+        @media (max-width: 768px) {
+
+            body {
+                padding: 0;
+                height: auto;
+                overflow-y: auto;
+                display: block;
+            }
+
+            .display-container {
+                width: 100%;
+                height: auto;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                padding: 12px;
+                gap: 12px;
+                border-radius: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.4em;
+                padding: 0 10px;
+            }
+
+            .header p {
+                font-size: 0.75em;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .metric-box h2 {
+                font-size: 0.85em;
+            }
+
+            .metric-value {
+                font-size: 1.7em;
+            }
+
+            .status-panel {
+                border-left-width: 3px;
+                padding: 10px;
+            }
+
+            .status-item {
+                font-size: 0.85em;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+            }
+
+            .visual-control-section {
+                grid-column: 1 / 2;
+                order: 4;
+                gap: 10px;
+            }
+
+            .visual-panel img {
+                max-height: 200px;
+            }
+
+            .controls {
+                gap: 8px;
+            }
+
+            .controls-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .control-button {
+                width: 100%;
+                font-size: 0.85em;
+                padding: 10px;
+            }
+
+            .leaderboard {
+                order: 5;
+                padding: 10px;
+            }
+
+            .leaderboard h3 {
+                font-size: 0.9em;
+                text-align: center;
+            }
+
+            .leaderboard ol {
+                flex-direction: column;
+                gap: 6px;
+                text-align: left;
+            }
+
+            .leaderboard .score {
+                font-size: 1.1em;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="display-container">
@@ -260,7 +383,7 @@
             <div class="visual-panel">
                 <img src="tree.png" alt="Visualization of the Smart Carbon Capture Tree">
             </div>
-            
+
             <div class="controls">
                 <div class="controls-row">
                     <button class="control-button" onclick="toggleBioreactor(true)">START BIO-CAPTURE</button>
@@ -269,7 +392,7 @@
                 <button class="control-button" onclick="simulateCapture()">SIMULATE 1 HOUR OF CAPTURE</button>
             </div>
         </div>
-        
+
         <div class="leaderboard">
             <h3>🏅 COMMUNITY LEADERBOARD - TECH PARK NORTH:</h3>
             <ol>
@@ -288,27 +411,27 @@
         let postCaptureCO2 = 440;
         let northScore = 92;
         let isActive = false;
-        
+
         const targetPostCapture = 380;
 
         function updateDisplay() {
             document.getElementById('captureToday').textContent = captureToday.toFixed(1) + ' kg';
             document.getElementById('totalOffset').textContent = totalOffset.toFixed(0) + ' kg';
-            const treesEquivalent = Math.round(totalOffset / 23); 
+            const treesEquivalent = Math.round(totalOffset / 23);
             document.getElementById('equivalentTrees').textContent = treesEquivalent + ' Trees';
-            
+
             document.getElementById('ambientCO2').textContent = ambientCO2 + ' ppm';
-            
+
             const postCaptureElement = document.getElementById('postCaptureCO2');
             postCaptureCO2 = Math.round(postCaptureCO2); // Ensure it's a clean number
             postCaptureElement.textContent = postCaptureCO2 + ' ppm';
-            
+
             if (postCaptureCO2 < ambientCO2) {
-                postCaptureElement.style.color = '#00f07c'; 
+                postCaptureElement.style.color = '#00f07c';
             } else {
-                postCaptureElement.style.color = '#ff5757'; 
+                postCaptureElement.style.color = '#ff5757';
             }
-            
+
             document.getElementById('northScore').textContent = northScore;
         }
 
@@ -318,11 +441,11 @@
                 return;
             }
 
-            const hourCapture = 0.15; 
+            const hourCapture = 0.15;
             captureToday += hourCapture;
             totalOffset += hourCapture;
-            northScore += Math.random() > 0.5 ? 1 : 0; 
-            
+            northScore += Math.random() > 0.5 ? 1 : 0;
+
             updateDisplay();
         }
 
@@ -339,18 +462,19 @@
             } else {
                 statusElement.innerHTML = '🔴 **OFFLINE**';
                 statusElement.color = '#ff5757';
-                postCaptureCO2 = ambientCO2; 
+                postCaptureCO2 = ambientCO2;
                 powerElement.innerHTML = '🔋 **Standby**';
             }
-            
+
             updateDisplay();
         }
 
-        window.onload = function() {
+        window.onload = function () {
             updateDisplay();
-            toggleBioreactor(false); 
+            toggleBioreactor(false);
         };
     </script>
 
 </body>
+
 </html>
